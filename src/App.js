@@ -1,21 +1,24 @@
-import React from 'react';
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import React, { Fragment } from "react";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import { AppProvider } from "./_shared/store/providers/AppProvider";
+import ProductsPage from "./pages/Products";
+import CartPage from "./pages/Cart";
+import MainNavigation from "./_shared/components/MainNavigation";
+import "./App.css";
 
-import GlobalState from './context/GlobalState';
-import ProductsPage from './pages/Products';
-import CartPage from './pages/Cart';
-import './App.css';
-
-const App = props => {
+const App = (props) => {
   return (
-    <GlobalState>
-      <BrowserRouter>
-        <Switch>
-          <Route path="/" component={ProductsPage} exact />
-          <Route path="/cart" component={CartPage} exact />
-        </Switch>
-      </BrowserRouter>
-    </GlobalState>
+    <AppProvider>
+      <Router>
+        <Fragment>
+          <MainNavigation />
+          <Switch>
+            <Route path="/" component={ProductsPage} exact />
+            <Route path="/cart" component={CartPage} exact />
+          </Switch>
+        </Fragment>
+      </Router>
+    </AppProvider>
   );
 };
 
