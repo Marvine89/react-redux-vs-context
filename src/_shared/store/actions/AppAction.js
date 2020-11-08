@@ -1,4 +1,4 @@
-import { dispatch } from "../service";
+import { Subject } from "rxjs";
 
 export const ACTION_TYPE = {
   ADD_PRODUCT: "ADD_PRODUCT",
@@ -24,4 +24,12 @@ export const removeProductFromCart = (productId) => {
   setTimeout(() => {
     dispatch({ type: ACTION_TYPE.REMOVE_PRODUCT, productId: productId });
   }, 100);
+};
+
+const actionSubject$ = new Subject();
+
+export const onDispatch$ = actionSubject$.asObservable();
+
+export const dispatch = (p) => {
+  actionSubject$.next(p);
 };
