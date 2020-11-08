@@ -5,15 +5,21 @@ import { PRODUCTS } from "../../constants/products";
 import { addProductToCart } from "../actions/AppAction";
 import { removeProductFromCart } from "../actions/AppAction";
 import { onDispatch$ } from "../actions/AppAction";
+import { Subscription } from "rxjs";
 
 export const AppProvider = (props) => {
+  let ngUnsubscribe = new Subscription();
   const [cartState, dispatch] = useReducer(AppReducer, { cart: [] });
 
   useEffect(() => {
-    onDispatch$.subscribe((r) => {
+    ngUnsubscribe = onDispatch$.subscribe((r) => {
       console.log(r);
       dispatch(r);
     });
+
+    return () => {
+      ngUnsubscribe.unsubscribe();
+    };
   }, []);
 
   return (

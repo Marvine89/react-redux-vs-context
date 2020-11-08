@@ -1,13 +1,9 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext } from "react";
 import { AppContext } from "../store/context/AppContext";
 import "./Cart.css";
 
 export default () => {
   const context = useContext(AppContext);
-
-  useEffect(() => {
-    console.log(context);
-  }, []);
 
   return (
     <React.Fragment>
