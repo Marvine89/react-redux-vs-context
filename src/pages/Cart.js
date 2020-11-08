@@ -1,5 +1,5 @@
 import React, { useContext, useEffect } from "react";
-import { AppContext } from "../_shared/store/context/AppContext";
+import { AppContext } from "../store/context/AppContext";
 import "./Cart.css";
 
 export default () => {
